@@ -1,0 +1,24 @@
+{
+  "name": "mithril-utils",
+  "version": "0.1.0",
+  "description": "Utilities for Mithril",
+  "main": "mutil.js",
+  "scripts": {
+    "test": "node_modules/ospec/bin/ospec"
+  },
+  "keywords": [
+    "mithril",
+    "utility",
+    "util",
+    "attributes"
+  ],
+  "dependencies": {
+    "mithril": "^1.1.3"
+  },
+  "devDependencies": {
+    "ospec": "^1.3.1"
+  },
+  "author": "Niklas Heise <n.heise@heise-media.de>",
+  "license": "MIT",
+  "repository": "nheise/mithril-utils"
+}
