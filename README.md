@@ -1,25 +1,40 @@
-# mithril-util-attributes
+# mithril-utils
 
 [Usage](#usage) | [API](#api)
 
-Utility for Mithril creating attributes
+Utilities for Mithril
 
 ## Usage
 
 ### Basic Usage
 
-First create the builder, use it and get the attributes to use them in the mithril function.
+For basic useage, import the hole utilities bundle via require import.
 
 ```javascript
 var m = require('mithril')
-var ma = require('mithril-util-attributes')
+var mu = require('mithril-utils')
 
-var div = m( "div", ma().id( "0" ).get() )
+var div = m( "div", mu.attrs.onclick( executeMeWhenDivClicked ) )
 ```
-### Create CSS Classes
+
+To reduce dependencies, you can import modules the direct way.
 
 ```javascript
-var div = m( "div", ma().css( "highlight", ctrl.isHighlighted(), "bold", ctrl.isBold(), "italic",  ctrl.isItalic() ).get() )
+var m = require('mithril')
+var onclick = require('mithril-utils/attrs/onclick')
+
+var div = m( "div", onclick( executeMeWhenDivClicked ) )
+```
+
+### Create CSS Class Attribute
+
+```javascript
+var toClass = require("mithril-utils/attrs/toClass")
+var div = m( "div", toClass( {
+  "highlight": ctrl.isHighlighted(),
+  "bold": ctrl.isBold(),
+  "italic":  ctrl.isItalic()
+  } ) )
 
 // when ctrl.isHighlighted() == true
 // when ctrl.isBold() == false
