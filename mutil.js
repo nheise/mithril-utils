@@ -1,6 +1,5 @@
 var mu = {}
 
-mu.attrs = {}
-mu.attrs.onclick = require("./attrs/onclick")
+mu.attrs = require("./attrs")
 
 module.exports = mu

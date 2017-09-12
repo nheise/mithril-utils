@@ -6,9 +6,9 @@ Utilities for Mithril
 
 ## Usage
 
-### Basic Usage
+### Simple Usage
 
-For basic useage, import the hole utilities bundle via require import.
+For simple useage, import the hole utilities bundle via require import.
 
 ```javascript
 var m = require('mithril')
@@ -45,65 +45,57 @@ var div = m( "div", toClass( {
 ### Create Event bi-directional binding
 
 ```javascript
-m( "input", ma().name( "description" ).value( "initialValue" ).oninput( ctrl.setDescription ).get() )
+m( "input", mu.attrs.onchange( model.description ) )
 ```
 
 ---
 
 ## API
 
-### Create the Builder
+### Attrs module bundle
 
-#### Builder ma( [Object givenAttributes] )
+The attrs module bundles functionality to create the attributes object for the mithril m function
 
-Creates a new instance of the builder. If you have attributes already, you can them handover via optional parameter.
+#### Object attrs.toClass( Object css [Object prevGenAttr] )
 
-### Builder
+The toClass function will create from a give object like this:
 
-#### Builder builder.new( [Object givenAttributes] )
+var css = {
+  "highlight": isHighlighted(),
+  "bold": isBold(),
+  "italic":  isItalic()
+}
 
-Creates a new instance of the builder. If you have attributes already, you can them handover via optional parameter.
+When the evaluation of the values are like this:
 
----
-#### Object builder.get()
+isHighlighted() == true
+isBold() == false
+isItalic() == true
 
-Creates the attribute object.
+It returnd an object that can be used to stile that div as shown:
 
----
-#### Builder builder.css( String cssClassName, Boolean useit [,String cssClassName, Boolean useIt ] )
-
-Can be invoked as often you like.
-The last class of two or more identical class strings will win.
-
----
-#### Builder builder.id( String id )
-
----
-#### Builder builder.key( String key )
-
----
-#### Builder builder.onclick( Function callback )
-
----
-#### Builder builder.value( String value )
-
----
-#### Builder builder.oninput( Function callback [, Boolean useMithrilWithAttrFunction [, Object thisArg ]] )
-
----
-#### Builder builder.onchange( Function callback [, Boolean useMithrilWithAttrFunction [, Object thisArg ]] )
-
----
-#### Builder builder.withAttr( String attrName, String event, Object initialValue, Function callback [, Object thisArg ] )
-
-This will invoke internally:
-```javascript
-attrs[attrName] = initialValue
-attrs[event] = m.withAttr( attrName, callback, thisArg )
-```
+m( "div", { 'class': 'highlight italic' } )
 
 ---
 
-#### Builder builder.set( String key, Any value )
+#### Object attrs.onclick( Function fn [,Object prevGenAttr] )
 
-Set any attribute you like.
+Creates an object: { "onclick": fn }
+
+That can be used to create a button like this:
+
+m( "button", attrs.onclick( fn ) )
+
+---
+
+#### Object attrs.onchange( Function fn [, Object prevGenAttr] )
+
+Creates an object:
+{ 
+  "onchange": m.withAttr( "value", fn ),
+  "value": fn()
+}
+
+That can be used to create a two way bound input like this:
+
+m( "input", attrs.onchange( fn ) )
