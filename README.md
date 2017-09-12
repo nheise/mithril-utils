@@ -102,7 +102,7 @@ Creates an object:
   "value": fn()
 }
 ```
-That can be used to create a two way bound input like this:
+That can be used to create a bi-directional binding like this:
 
 ```javascript
 m( "input", attrs.onchange( fn ) )
