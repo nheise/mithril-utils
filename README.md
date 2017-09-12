@@ -60,42 +60,50 @@ The attrs module bundles functionality to create the attributes object for the m
 
 The toClass function will create from a give object like this:
 
+```javascript
 var css = {
   "highlight": isHighlighted(),
   "bold": isBold(),
   "italic":  isItalic()
 }
-
+```
 When the evaluation of the values are like this:
 
+```javascript
 isHighlighted() == true
 isBold() == false
 isItalic() == true
-
+```
 It returnd an object that can be used to stile that div as shown:
 
+```javascript
 m( "div", { 'class': 'highlight italic' } )
-
+```
 ---
 
 #### Object attrs.onclick( Function fn [,Object prevGenAttr] )
 
-Creates an object: { "onclick": fn }
-
+Creates an object:
+```javascript
+{ "onclick": fn }
+```
 That can be used to create a button like this:
-
+```javascript
 m( "button", attrs.onclick( fn ) )
-
+```
 ---
 
 #### Object attrs.onchange( Function fn [, Object prevGenAttr] )
 
 Creates an object:
+```javascript
 { 
   "onchange": m.withAttr( "value", fn ),
   "value": fn()
 }
-
+```
 That can be used to create a two way bound input like this:
 
+```javascript
 m( "input", attrs.onchange( fn ) )
+```
